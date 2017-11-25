@@ -34,6 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bisar\BisarDocument.cs" />
+    <Compile Include="Bisar\BisarRegion.cs" />
+    <Compile Include="Bisar\BisarSystem.cs" />
+    <Compile Include="Bisar\CalculationMethodType.cs" />
+    <Compile Include="Bisar\SpringComplianceType.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Fwd\FwdDrop.cs" />
     <Compile Include="Fwd\FwdVehicle.cs" />
@@ -45,7 +50,15 @@
     <Compile Include="Fwd\Kuab\KuabKeyValuePair.cs" />
     <Compile Include="Fwd\Kuab\KuabNameAlias.cs" />
     <Compile Include="Fwd\Kuab\KuabReader.cs" />
+    <Compile Include="Pavement\Layer.cs" />
+    <Compile Include="Pavement\Load.cs" />
+    <Compile Include="Pavement\Material.cs" />
+    <Compile Include="Pavement\Structure.cs" />
+    <Compile Include="Pavement\StructureType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\ModelResult.cs" />
+    <Compile Include="Results\ModelResultType.cs" />
+    <Compile Include="Results\PointResult.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
