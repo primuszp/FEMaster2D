@@ -5,23 +5,41 @@ namespace Pavexpert.Core.Extensions
 {
     public static class StringExtensions
     {
-        public static int ToInt(this string text)
+        private static readonly CultureInfo CultureInfo = CultureInfo.CurrentCulture;
+
+        public static int ToInt(this string str)
         {
-            return Convert.ToInt32(ToDouble(text));
+            return int.Parse(str, NumberStyles.Any);
         }
 
-        public static double ToDouble(this string text)
+        public static double ToDouble(this string str, double ratio = 1.0, int digits = 15)
         {
-            double result;
-            string separator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+            string separator = CultureInfo.NumberFormat.CurrencyDecimalSeparator;
 
-            if (!text.Contains(separator))
+            int index = Math.Max(str.IndexOf('.'), str.IndexOf(','));
+
+            if (index >= 0 && !char.IsDigit(str[index]))
             {
-                if (separator == ".") text = text.Replace(',', '.');
-                if (separator == ",") text = text.Replace('.', ',');
+                str = str.Replace(str[index].ToString(), separator);
             }
 
-            return double.TryParse(text, out result) ? result : double.NaN;
+            return Math.Round(double.Parse(str, NumberStyles.Float) * ratio, digits);
+        }
+
+        public static string RemoveExtraSpaces(this string str)
+        {
+            while (str.Contains("  "))
+            {
+                str = str.Replace("  ", " ");
+            }
+
+            if (str != string.Empty)
+            {
+                str = str[0] == ' ' ? str.Substring(1) : str;
+                str = str.EndsWith(" ", StringComparison.Ordinal) ? str.Remove(str.Length - 1) : str;
+            }
+
+            return str;
         }
     }
 }
