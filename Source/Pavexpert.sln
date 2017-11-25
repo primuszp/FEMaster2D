@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavexpert.Sandbox", "Pavexpert.Sandbox\Pavexpert.Sandbox.csproj", "{5D9AF579-5343-45B7-AB3E-14B54C09D972}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavexpert.Core", "Pavexpert.Core\Pavexpert.Core.csproj", "{33E55022-A61E-49E5-8827-00829122046E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pavexpert.Fwdbox", "Pavexpert.Fwdbox\Pavexpert.Fwdbox.csproj", "{3D342243-E81E-4578-A60C-D546B20CE977}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D9AF579-5343-45B7-AB3E-14B54C09D972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D9AF579-5343-45B7-AB3E-14B54C09D972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D9AF579-5343-45B7-AB3E-14B54C09D972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D9AF579-5343-45B7-AB3E-14B54C09D972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33E55022-A61E-49E5-8827-00829122046E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E55022-A61E-49E5-8827-00829122046E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E55022-A61E-49E5-8827-00829122046E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E55022-A61E-49E5-8827-00829122046E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D342243-E81E-4578-A60C-D546B20CE977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D342243-E81E-4578-A60C-D546B20CE977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D342243-E81E-4578-A60C-D546B20CE977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D342243-E81E-4578-A60C-D546B20CE977}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
