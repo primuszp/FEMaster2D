@@ -8,21 +8,18 @@
 
         public double Thickness { get; set; }
 
-		/// <summary>
-		/// <para>Interface Friction Parameter (IFP), with 0 ≤ IFP ≤ 1</para>
-		/// <para>IFP = 0 means full friction, IFP = 1 means complete slip</para>
-		/// </summary>
-		public double Roughness { get; set; }
+        /// <summary>
+        /// <para>Interface Friction Parameter (IFP), with 0 ≤ IFP ≤ 1</para>
+        /// <para>IFP = 0 means full friction, IFP = 1 means complete slip</para>
+        /// </summary>
+        public double Roughness { get; set; }
 
         /// <summary>
         /// Material
         /// </summary>
         public Material Material { get; set; }
 
-        public bool IsHalfSpace
-        {
-            get { return double.IsPositiveInfinity(Thickness); }
-        }
+        public bool IsHalfSpace => double.IsPositiveInfinity(Thickness);
 
         #endregion
 
@@ -33,8 +30,7 @@
         { }
 
         public Layer(int number, Material material,
-                     double thickness = double.PositiveInfinity,
-                     double roughness = 0.0)
+                     double thickness = double.PositiveInfinity, double roughness = 0.0)
         {
             Number = number;
             Material = material;
