@@ -49,9 +49,6 @@ namespace Pavexpert.Sandbox
         }
 
 
-
-
-
         private void LoadKuabFwd()
         {
             KuabReader reader = new KuabReader();
