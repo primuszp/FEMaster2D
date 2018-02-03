@@ -18,7 +18,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pavexpert.Core\Pavexpert.Core.csproj" />
-    <ProjectReference Include="..\Pavexpert.Leaf\Pavexpert.Leaf.vbproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="libop.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="libop64.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

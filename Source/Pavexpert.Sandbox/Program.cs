@@ -44,7 +44,7 @@ namespace Pavexpert.Sandbox
             double[,] result2 = new double[nPoints, 27];
 
 
-            var code = OpenPave.Calc(fg, nLayers, lh, le, lv, lf, nLoads, ax, ay, al, ap, ar, nPoints, px, py, pz, pl, result2);
+            var code = OpenPave.Calculation(fg, nLayers, lh, le, lv, lf, nLoads, ax, ay, al, ap, ar, nPoints, px, py, pz, pl, result2);
             ;
         }
 

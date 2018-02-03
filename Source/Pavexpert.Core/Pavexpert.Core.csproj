@@ -11,14 +11,15 @@
   <ItemGroup>
     <PackageReference Include="UnitsNet" Version="3.88.0" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Update="Libraries\libop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Folder Include="Libraries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="libop.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Libraries\libop64.dll">
+    <None Update="Libraries\libop.dylib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>
