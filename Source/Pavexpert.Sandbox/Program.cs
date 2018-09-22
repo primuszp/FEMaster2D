@@ -13,9 +13,6 @@ namespace Pavexpert.Sandbox
             TestOpenPave();
         }
 
-
-
-
         private static void TestOpenPave()
         {
             int fg = 1;
