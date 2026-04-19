@@ -1,0 +1,9 @@
+.claude/
+.dotnet/
+btFEMf/
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+**/*.cache
+**/*.log
