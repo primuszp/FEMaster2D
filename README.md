@@ -2,7 +2,16 @@
 
 FEMaster 2D is a .NET finite element analysis and visualization tool for 2D constant-strain triangle models.
 
-It is a C# port of the older btFEM Visual Basic project, rebuilt with a modern drawing layer, a faster solver path, and a cleaner WinForms UI.
+It is a C# port of the original btFEM Visual Basic project, which was available for download on CodeProject. The port keeps the core educational CST finite element workflow while modernizing the drawing layer, solver path, and WinForms UI.
+
+The original VB project description included the following note:
+
+> This program shows the complete implementation of a finite element program. Constant strain triangular element has been chosen for demonstration purpose. Any other element may be used with suitable modifications. Please note that Constant Strain Triangles (CST) are not recommended for stress analysis of practical real time problems.
+
+> Written by Dr. Bhairav Thakkar  
+> 23rd September 2017  
+> Halifax, NS  
+> Canada
 
 ## Features
 
