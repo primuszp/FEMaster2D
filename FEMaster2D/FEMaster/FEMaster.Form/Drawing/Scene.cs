@@ -39,7 +39,8 @@ namespace FEMaster.Form.Drawing
             Draw(new Canvas(e.Graphics)
             {
                 WorldToScreen = viewport.WorldToScreen,
-                ScreenToWorld = viewport.ScreenToWorld
+                ScreenToWorld = viewport.ScreenToWorld,
+                ViewKey = HashCode.Combine(viewport.Width, viewport.Height, viewport.Zoom, viewport.TranslateX, viewport.TranslateY)
             });
         }
 
@@ -72,13 +73,12 @@ namespace FEMaster.Form.Drawing
 
         private void OnViewportMouseDown(object sender, MouseEventArgs e)
         {
-            ForEach(drawable =>
+            foreach (var drawable in this)
             {
                 if (drawable is IMouseListener listener)
                 {
                     listener.OnMouseButtonDown(e);
                 }
-
 
                 if (drawable is Line line && e.Button == MouseButtons.Left)
                 {
@@ -88,10 +88,10 @@ namespace FEMaster.Form.Drawing
                     if (HitTesting.HitTestLine(pt1, pt2, e.Location, 2))
                     {
                         line.IsSelected = !line.IsSelected;
+                        break;
                     }
                 }
-
-            });
+            }
         }
 
         private void OnViewportMouseWheel(object sender, MouseEventArgs e)

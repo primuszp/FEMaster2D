@@ -85,23 +85,22 @@ namespace FEMaster.Form.Controls
         protected override void OnMouseWheel(MouseEventArgs e)
         {
             base.OnMouseWheel(e);
-            {
-                double scale = 1;
 
-                if (e.Delta > 0)
-                {
-                    scale = SetZoom(true);
-                }
-                else if (e.Delta < 0)
-                {
-                    scale = SetZoom(false);
-                }
+            var before = ScreenToWorld(e.Location);
 
-                if (Math.Abs(scale - 1.0) < double.Epsilon) return;
+            double previousZoom = zoom;
+            if (e.Delta > 0)
+                SetZoom(true);
+            else if (e.Delta < 0)
+                SetZoom(false);
 
-                tx += (tx + e.X) * scale;
-                ty += (ty + e.Y) * scale;
-            }
+            if (Math.Abs(previousZoom - zoom) < double.Epsilon)
+                return;
+
+            // Keep the world point under the mouse stable while zooming.
+            tx = before.X * zoom - e.X;
+            ty = (Height - before.Y) * zoom - e.Y;
+
             Invalidate();
         }
 
@@ -145,14 +144,13 @@ namespace FEMaster.Form.Controls
 
         private double SetZoom(bool zoomIn, double delta = 0.1d)
         {
-            double scale = !zoomIn ? Zoom * (1.0d - delta) : Zoom * (1.0d + delta);
+            double scale = zoomIn ? Zoom * (1.0d + delta) : Zoom * (1.0d - delta);
 
             if (0.0005 <= scale && scale <= 2000)
             {
                 Zoom = scale;
-                return zoomIn ? +delta : -delta;
             }
-            return 1.0d;
+            return Zoom;
         }
 
         #endregion

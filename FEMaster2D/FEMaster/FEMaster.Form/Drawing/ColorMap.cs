@@ -36,7 +36,8 @@ namespace FEMaster.Form.Drawing
         public Color GetColor(double value)
         {
             var range = Max - Min;
-            if (Math.Abs(range) < double.Epsilon) return colors[0];
+            if (colors == null || colors.Length == 0) return Color.Blue;
+            if (Math.Abs(range) < double.Epsilon) return colors[colors.Length / 2];
             var ratio = (value - Min) / range;
             var index = (int)Math.Round(ratio * segments);
             index = Math.Max(0, Math.Min(segments, index));
@@ -60,7 +61,8 @@ namespace FEMaster.Form.Drawing
 
             for (var i = 0; i < indices.Length - 1; i++)
             {
-                var c = GetSteppedColors(mainColors[i + 1], mainColors[i], indices[i + 1] - indices[i]);
+                var span = Math.Max(1, indices[i + 1] - indices[i]);
+                var c = GetSteppedColors(mainColors[i + 1], mainColors[i], span);
 
                 for (var j = 0; j < c.Length; j++)
                 {

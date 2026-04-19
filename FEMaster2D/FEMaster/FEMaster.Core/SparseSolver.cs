@@ -112,11 +112,11 @@ namespace FEMaster.Core
             int n = A.Size;
             if (maxIter < 0) maxIter = Math.Max(2 * n, 5000);
 
-            double[] diag = A.Diagonal();
-            // Jacobi preconditioner: M^-1 = 1/diag(A)
-            double[] minvDiag = new double[n];
-            for (int i = 0; i < n; i++)
-                minvDiag[i] = diag[i] > 0 ? 1.0 / diag[i] : 1.0;
+                double[] diag = A.Diagonal();
+                // Jacobi preconditioner: M^-1 = 1/diag(A)
+                double[] minvDiag = new double[n];
+                for (int i = 0; i < n; i++)
+                    minvDiag[i] = Math.Abs(diag[i]) > double.Epsilon ? 1.0 / diag[i] : 1.0;
 
             double[] x  = new double[n];
             double[] r  = (double[])b.Clone();  // r = b - A*x0,  x0=0
@@ -142,6 +142,8 @@ namespace FEMaster.Core
 
                 z = ApplyDiagPrecon(minvDiag, r);
                 double rzNew = Dot(r, z);
+                if (Math.Abs(rz) < double.Epsilon)
+                    break;
                 double beta  = rzNew / rz;
                 rz = rzNew;
                 for (int i = 0; i < n; i++) p[i] = z[i] + beta * p[i];

@@ -1,4 +1,5 @@
 using System;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,6 +28,34 @@ namespace FEMaster.Form
         }
 
         #region File Menu
+
+        private void OnSaveImageAsClick(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog())
+            {
+                dialog.Title = "Save Image As";
+                dialog.Filter = "PNG Files|*.png|JPEG Files|*.jpg|BMP Files|*.bmp|TIFF Files|*.tiff|All Files|*.*";
+                dialog.FilterIndex = 1;
+
+                if (dialog.ShowDialog() != DialogResult.OK) return;
+
+                using (var bmp = new System.Drawing.Bitmap(viewport.Width, viewport.Height))
+                {
+                    viewport.DrawToBitmap(bmp, new System.Drawing.Rectangle(0, 0, viewport.Width, viewport.Height));
+
+                    ImageFormat format = ImageFormat.Bmp;
+                    switch (dialog.FilterIndex)
+                    {
+                        case 1: format = ImageFormat.Png; break;
+                        case 2: format = ImageFormat.Jpeg; break;
+                        case 3: format = ImageFormat.Bmp; break;
+                        case 4: format = ImageFormat.Tiff; break;
+                    }
+
+                    bmp.Save(dialog.FileName, format);
+                }
+            }
+        }
 
         private void OnOpenClick(object sender, EventArgs e)
         {
@@ -79,7 +108,7 @@ namespace FEMaster.Form
                 meshEntity?.AutoScaleDeformationZoom();
                 showReportMenuItem.Enabled = true;
                 scene.Invalidate();
-                statusLabel.Text = $"Analysis complete — {model.ElementsNo} elements, {model.NodesNo} nodes";
+                statusLabel.Text = $"Analysis complete - {model.ElementsNo} elements, {model.NodesNo} nodes";
             }
             catch (Exception ex)
             {
@@ -96,9 +125,11 @@ namespace FEMaster.Form
         {
             analyseMenuItem.Enabled            = !running;
             refineMeshMenuItem.Enabled         = !running;
+            progressBar.Visible                = running;
             progressBar.MarqueeAnimationSpeed  = running ? 30 : 0;
-            statusLabel.Text                   = running ? "Analysing…" : statusLabel.Text;
+            statusLabel.Text                   = running ? "Analysing..." : "Ready";
             Cursor                             = running ? Cursors.WaitCursor : Cursors.Default;
+            statusStrip.Refresh();
         }
 
         private void OnAnalyseMenuOpening(object sender, EventArgs e)

@@ -2,9 +2,9 @@
 {
     public class Range
     {
-        public double Max { get; set; }
+        public double Max { get; set; } = double.MinValue;
 
-        public double Min { get; set; }
+        public double Min { get; set; } = double.MaxValue;
 
         public void AddValue(double value)
         {

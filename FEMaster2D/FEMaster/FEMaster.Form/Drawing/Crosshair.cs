@@ -28,17 +28,20 @@ namespace FEMaster.Form.Drawing
                 context.DrawLine(Pens.White, new Point(X - 40, Y), new Point(X + 40, Y)); // horizontal line
                 context.DrawRectangle(Pens.White, X - 4, Y - 4, 8, 8);
             });
-
-            Invalidate(bounds);
         }
 
         #region Interface IMouseListener
 
         public void OnMouseMove(MouseEventArgs args)
         {
+            var previous = bounds;
             X = args.X;
             Y = args.Y;
-            bounds = new Rectangle(X - 200, Y - 200, 400, 400);
+            bounds = new Rectangle(X - 48, Y - 48, 96, 96);
+            if (previous.Width > 0 && previous.Height > 0)
+                Invalidate(Rectangle.Union(previous, bounds));
+            else
+                Invalidate(bounds);
         }
 
         public void OnMouseWheel(MouseEventArgs args)

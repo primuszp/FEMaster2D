@@ -62,21 +62,9 @@ namespace FEMaster.Core
                 r[getDOFy(PointLoads[i].NodeNo - 1)] += PointLoads[i].Fy;
             }
 
-            if (BcMethod == BoundaryConditionMethod.DirectCondensation)
-            {
-                Deformations = SolveDirectCondensation(r);
-            }
-            else
-            {
-                int halfBandWidth = getHalfBandWidth();
-                double[,] Kg = new double[nDof, halfBandWidth];
-                for (int i = 0; i < ElementsNo; i++)
-                {
-                    double[,] ke = BuildElementStiffness(i);
-                    AssembleKg(ref ke, ref Kg, i);
-                }
-                Deformations = SolvePenalty(Kg, r);
-            }
+            // Direct condensation is the primary and numerically preferred path.
+            // The penalty path is retained only as a legacy fallback hook.
+            Deformations = SolveDirectCondensation(r);
 
             // Now that we have deformations, lets calculate stresses and strains..
             SigmaXRange = new Range(); SigmaYRange = new Range(); TauXYRange = new Range();
@@ -140,6 +128,8 @@ namespace FEMaster.Core
         {
             double pow   = MaxKgiiPower(ref Kg);
             double large = Math.Pow(10, Math.Ceiling(pow) + 10);
+            if (double.IsNaN(large) || double.IsInfinity(large))
+                large = 1e20;
 
             for (int i = 0; i < SupportsNo; i++)
             {
@@ -209,13 +199,16 @@ namespace FEMaster.Core
 
         private double MaxKgiiPower(ref double[,] Kg)
         {
-            double max = double.MinValue;
+            double max = 0;
 
             for (int i = 0; i <= Kg.GetLength(0) - 1; i++)
             {
-                if (Kg[i, 0] > max)
-                    max = Kg[i, 0];
+                var value = Math.Abs(Kg[i, 0]);
+                if (value > max)
+                    max = value;
             }
+            if (max <= double.Epsilon)
+                return 0;
             double p = Math.Log10(max);
             return p;
         }
@@ -430,14 +423,34 @@ namespace FEMaster.Core
                     ReadModelElementItems(reader, model, error);
                     ReadModelLoadItems(reader, model, error);
                     ReadModelSupportItems(reader, model, error);
+
+                    if (!IsValid(model))
+                    {
+                        error?.Invoke(new InvalidDataException("Model file is incomplete or contains invalid counts."));
+                        return null;
+                    }
                 }
                 catch (Exception exception)
                 {
                     error?.Invoke(exception);
+                    return null;
                 }
             }
 
             return model;
+        }
+
+        private static bool IsValid(Model model)
+        {
+            return model != null
+                && model.NodesNo > 0
+                && model.ElementsNo > 0
+                && model.LoadsNo >= 0
+                && model.SupportsNo >= 0
+                && model.Nodes != null && model.Nodes.Length == model.NodesNo
+                && model.Elements != null && model.Elements.Length == model.ElementsNo
+                && model.PointLoads != null && model.PointLoads.Length == model.LoadsNo
+                && model.Supports != null && model.Supports.Length == model.SupportsNo;
         }
 
         private static void ReadModelSupportItems(StreamReader reader, Model model, Action<Exception> error = null)

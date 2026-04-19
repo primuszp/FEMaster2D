@@ -20,6 +20,7 @@ namespace FEMaster.Form
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveImageAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analyseMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +74,7 @@ namespace FEMaster.Form
             // 
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMenuItem,
+            this.saveImageAsMenuItem,
             this.toolStripSeparator1,
             this.exitMenuItem});
             this.fileMenu.Name = "fileMenu";
@@ -86,6 +88,13 @@ namespace FEMaster.Form
             this.openMenuItem.Size = new System.Drawing.Size(155, 22);
             this.openMenuItem.Text = "&Open...";
             this.openMenuItem.Click += new System.EventHandler(this.OnOpenClick);
+            // 
+            // saveImageAsMenuItem
+            // 
+            this.saveImageAsMenuItem.Name = "saveImageAsMenuItem";
+            this.saveImageAsMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.saveImageAsMenuItem.Text = "Save Image &As...";
+            this.saveImageAsMenuItem.Click += new System.EventHandler(this.OnSaveImageAsClick);
             // 
             // toolStripSeparator1
             // 
@@ -335,6 +344,7 @@ namespace FEMaster.Form
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar.MarqueeAnimationSpeed = 0;
             this.progressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.progressBar.Visible = false;
             // 
             // MainForm
             // 
@@ -351,6 +361,9 @@ namespace FEMaster.Form
             this.menuStrip.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.Controls.SetChildIndex(this.menuStrip, 0);
+            this.Controls.SetChildIndex(this.statusStrip, 1);
+            this.Controls.SetChildIndex(this.viewport, 2);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,6 +375,7 @@ namespace FEMaster.Form
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileMenu;
         private System.Windows.Forms.ToolStripMenuItem openMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveImageAsMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analyseMenu;

@@ -23,6 +23,8 @@ namespace FEMaster.Form.Drawing
 
         public Func<PointF, Point2D> ScreenToWorld;
 
+        public int ViewKey { get; set; }
+
         #endregion
 
         #region Properties
