@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "KzRZsp5SbpE=",
+  "success": true,
+  "projectFilePath": "D:\\Repositories\\Primusz\\FEMaster2D\\FEMaster\\FEMaster.Core\\FEMaster.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\primuszpeter\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.26\\microsoft.windowsdesktop.app.ref.8.0.26.nupkg.sha512",
+    "C:\\Users\\primuszpeter\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.26\\microsoft.netcore.app.ref.8.0.26.nupkg.sha512",
+    "C:\\Users\\primuszpeter\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.26\\microsoft.aspnetcore.app.ref.8.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}
