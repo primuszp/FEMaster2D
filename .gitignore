@@ -279,3 +279,15 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Local sibling projects not part of FEMaster2D
+Cadves/
+DEMLab/
+DEMeter/
+FlexPAVE/
+ForesTycoon/
+FrCAD/
+GpxToMap/
+OpenCg/
+ParkingCar/
+FEMaster2D/FEMaster/Samples/
