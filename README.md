@@ -81,6 +81,8 @@ The modernization includes:
 
 Original research and theoretical foundation:
 - `docs/Finite Element Analysis in VB.pdf` — Complete FEA theory and implementation guide
+- `docs/btFEM-original-VB-source.zip` — Original VB.NET source code (archived from CodeProject)
+- `docs/ORIGINAL_SOURCE.md` — Attribution and reference information
 
 ## Project Structure
 
